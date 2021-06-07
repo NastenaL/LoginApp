@@ -1,13 +1,22 @@
 import {Path} from "../enum/path";
 
-export class RouterService1 {
+export class RouterService {
     container: Element;
   
     constructor(container: Element) {
         this.container = container;
     }
   
-    locationResolver(location: string){
+    private changeHash(){
+        window.addEventListener('load', () => {
+            const location = window.location.hash;
+            if(location){
+              this.renderLocation(location);
+            }
+        });
+    }
+
+    private renderLocation(location: string){
         switch(location){
             case Path.sign_up:
                 this.container.innerHTML = `<h1>${location}</h1>`;
@@ -20,7 +29,16 @@ export class RouterService1 {
                 break;
         }      
     }
-    
+
+    init(navigation :  HTMLCollectionOf<HTMLAnchorElement>){
+        this.changeHash();
+        
+        [...navigation].forEach(item => {
+            item.addEventListener('click', ()=>{
+            this.renderLocation(item.hash);
+            });
+        });
+    }
 }
 
-export default RouterService1;
+export default RouterService;
