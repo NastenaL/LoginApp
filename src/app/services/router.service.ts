@@ -1,4 +1,4 @@
-import {Path} from "../enum/path";
+import {Path} from "../enums/path.enum";
 
 export class RouterService {
     container: Element;
@@ -32,10 +32,10 @@ export class RouterService {
 
     init(navigation :  HTMLCollectionOf<HTMLAnchorElement>){
         this.changeHash();
-        
+
         [...navigation].forEach(item => {
             item.addEventListener('click', ()=>{
-            this.renderLocation(item.hash);
+            this.renderLocation(item.hash.slice(0, -1)            );
             });
         });
     }
