@@ -2,7 +2,7 @@ export enum Path{
     dashboard = "#/dashboard",
     home = "#",
     profile = "#/userId/profile",
-    reset_password = "#/reset-password",
-    sign_in = "#/sign-in",
-    sign_up = "#/sign-up"
+    resetPassword = "#/reset-password",
+    signIn = "#/sign-in",
+    signUp = "#/sign-up"
 };

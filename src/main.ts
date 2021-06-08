@@ -5,7 +5,7 @@ import {RouterService} from './app/services/router.service';
 function main() {
   const reducers = combineReducers(appReducers);
   const store = createStore(reducers);
-  const container = document.querySelector("#container")!;
+  const container = document.getElementById("container")!;
   const navigationLinks = document.getElementsByTagName('nav')[0]
     .getElementsByTagName('A') as HTMLCollectionOf<HTMLAnchorElement>;
 
