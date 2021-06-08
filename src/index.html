@@ -3,16 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <title>LoginApp</title>
+    <link rel="stylesheet" type="text/css" href="../src/app/styles/index.css">
   </head>
   <body>
-    <main id="container">
-        <h1>TEST</h1>
-    </main>
-    <nav>
-        <a href="#/" >Main</a>
-        <a href="#/sign-in/">Sign-in</a>
+      <span id="openButton">&#9776; LoginApp</span>    
+      <main id="container"></main>
+
+      <nav id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" id="closeButton">&times;</a>
+        <a href="#/reset-password">Reset password</a>
         <a href="#/sign-up/">Sign-up</a>
     </nav>
+      
 </body>
 <script src="../dist/bundle.js"></script>
 </html>
