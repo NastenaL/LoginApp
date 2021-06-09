@@ -38,11 +38,10 @@ export class RouterService {
             case Path.home:
                 this.container.innerHTML = `<h1>${location}</h1>`;
                 break;
-                default:{
-                    signIn.render();
-                    console.log(12334);
-                    break;
-                }
+            default:{
+                signIn.render();
+                break;
+            }
 
         }      
     }
