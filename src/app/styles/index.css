@@ -2,7 +2,7 @@ body {
     font-family: "Lato", sans-serif;
   }
   
-  .sidenav {
+  #sideMenu {
     height: 100%;
     width: 0;
     position: fixed;
@@ -15,7 +15,7 @@ body {
     padding-top: 60px;
   }
   
-  .sidenav a {
+  #sideMenu a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
@@ -24,11 +24,11 @@ body {
     transition: 0.3s;
   }
   
-  .sidenav a:hover {
+  #sideMenu a:hover {
     color: #f1f1f1;
   }
   
-  .sidenav .closebtn {
+  #sideMenu .closebtn {
     position: absolute;
     top: 0;
     right: 25px;
@@ -37,11 +37,18 @@ body {
   }
   
   @media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
+    #sideMenu {padding-top: 15px;}
+    #sideMenu a {font-size: 18px;}
   }
 
   #openButton{
     font-size:30px;
     cursor:pointer;
+  }
+
+  input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
   }

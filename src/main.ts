@@ -13,10 +13,10 @@ function main() {
   let router = new RouterService(container);
   router.init(navigationLinks);
 
-  const mySidenav = document.getElementById("mySidenav")!;
+  const sideMenu = document.getElementById("sideMenu")!;
   const openButton = document.getElementById("openButton")!;
   const closeButton = document.getElementById("closeButton")!;
-  let sideMenuHelper = new SideMenuHelper(mySidenav);
+  let sideMenuHelper = new SideMenuHelper(sideMenu);
 
   openButton.addEventListener('click', () =>{
     sideMenuHelper.openNav();
