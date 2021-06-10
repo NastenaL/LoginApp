@@ -1,48 +1,51 @@
-import {Path} from "../enums/path.enum";
-import {SignInComponent} from "../components/signIn.component";
+// TODO: Use barrel index.ts instead
+import { SignInComponent } from '../components/signIn.component';
+import { Path } from '../enums/path.enum';
 
 export class RouterService {
-  
-    constructor(public container: Element) {
-        this.container = container;
-    }
-  
-    public init(navigation :  HTMLCollectionOf<HTMLAnchorElement>){
-        this.responseType();
+  // TODO: Remove container and reverse dependency
+  constructor(public container: Element) {
+    this.container = container;
+  }
 
-        Array.from(navigation).forEach(item => {
-            item.addEventListener('click', ()=>{
-            this.renderLocation(item.hash.slice(0, -1));
-            });
-        });
-    }
+  // TODO: Add response type
+  public init(navigation: HTMLCollectionOf<HTMLAnchorElement>) {
+    this.responseType();
 
-    private responseType(){
-        window.addEventListener('load', () => {
-            const location = window.location.hash;
-            if(location){
-              this.renderLocation(location);
-            }
-        });
-    }
+    Array.from(navigation).forEach((item) => {
+      item.addEventListener('click', () => {
+        this.renderLocation(item.hash.slice(0, -1));
+      });
+    });
+  }
 
-    private renderLocation(location: string){
-        const signIn: SignInComponent = new SignInComponent(this.container);
-        switch(location){
-            case Path.signUp:
-                this.container.innerHTML = `<h1>${location}</h1>`;
-                break;
-            case Path.signIn:
-                signIn.render();
-                break;
-            case Path.home:
-                this.container.innerHTML = `<h1>${location}</h1>`;
-                break;
-            default:{
-                signIn.render();
-                break;
-            }
+  private responseType() {
+    window.addEventListener('load', () => {
+      const location = window.location.hash;
+      if (location) {
+        this.renderLocation(location);
+      }
+    });
+  }
 
-        }      
+  private renderLocation(location: string) {
+    // Remove this.container from SignInComponent and other component constructors
+    const signIn: SignInComponent = new SignInComponent(this.container);
+    switch (location) {
+      case Path.signUp:
+        this.container.innerHTML = `<h1>${location}</h1>`;
+        break;
+      case Path.signIn:
+        signIn.render();
+        break;
+      case Path.home:
+        this.container.innerHTML = `<h1>${location}</h1>`;
+        break;
+      default: {
+        // TODO: Redirect instead of rendering default template
+        signIn.render();
+        break;
+      }
     }
+  }
 }
