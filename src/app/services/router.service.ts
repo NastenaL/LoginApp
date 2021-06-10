@@ -1,5 +1,5 @@
 // TODO: Use barrel index.ts instead
-import { SignInComponent } from '../components/signIn.component';
+import { SignInComponent } from '../pages/signIn.page';
 import { Path } from '../enums/path.enum';
 
 export class RouterService {
@@ -29,21 +29,28 @@ export class RouterService {
   }
 
   private renderLocation(location: string) {
+    this.container.innerHTML = '';
     // Remove this.container from SignInComponent and other component constructors
-    const signIn: SignInComponent = new SignInComponent(this.container);
+    const signIn: SignInComponent = new SignInComponent();
     switch (location) {
-      case Path.signUp:
+      case Path.SignUp:
         this.container.innerHTML = `<h1>${location}</h1>`;
         break;
-      case Path.signIn:
+      case Path.SignIn:
         signIn.render();
         break;
-      case Path.home:
+      case Path.Home:
+        this.container.innerHTML = `<h1>${location}</h1>`;
+        break;
+      case Path.Dashboard:
+        this.container.innerHTML = `<h1>${location}</h1>`;
+        break;
+      case Path.ResetPassword:
         this.container.innerHTML = `<h1>${location}</h1>`;
         break;
       default: {
         // TODO: Redirect instead of rendering default template
-        signIn.render();
+        this.container.append(signIn.render());
         break;
       }
     }
