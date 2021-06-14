@@ -1,6 +1,6 @@
 export enum Path {
   Dashboard = '#/dashboard',
-  Home = '#',
+  Home = '',
   Profile = '#/userId/profile',
   ResetPassword = '#/reset-password',
   SignIn = '#/sign-in',

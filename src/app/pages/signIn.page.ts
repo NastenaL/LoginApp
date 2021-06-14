@@ -1,32 +1,29 @@
-import { DebounceHelper, InputValidator, EmailComponent, PasswordComponent } from '../pages'; 
+import { DebounceHelper, EmailComponent, PasswordComponent, SignInButtonComponent} from '../pages'; 
 
-// TODO: Split components into pages / components
-export class SignInComponent {
-  private readonly form: HTMLFormElement;
+export class SignInPage {
   private initialState: string = 'Weak';
-
-  constructor() {
-    this.form = document.createElement('form');
-  }
 
   public render(): DocumentFragment {
     const fragment = document.createDocumentFragment();
-    // TODO: Put form creation logic into one separate method
-    this.form.id = 'signInForm';
-    const emailDiv = EmailComponent.create();
-    const passwordDiv = PasswordComponent.create(this.initialState);
+    const form = this.createForm();
     
-    this.createSignInButton();
-    [emailDiv, passwordDiv].forEach(item => fragment.appendChild(item));
-    
+    fragment.appendChild(form);
     return fragment;
   }
 
-  private createSignInButton(): void {
-    const signInButton = document.createElement('button');
-    signInButton.type = 'submit';
-    signInButton.textContent = 'Sign in';
+  private createForm(): HTMLFormElement{
+    const form = document.createElement('form');
+    form.id = 'signInForm';
 
-    this.form.appendChild(signInButton);
+    const emailDiv = EmailComponent.create();
+    const passwordDiv = PasswordComponent.create(this.initialState);
+    const signInButton = SignInButtonComponent.create();
+    signInButton.addEventListener('click', ()=>{
+      const loginValue = document.getElementById('emailInput').value;
+      const passwordValue = document.getElementById('passwordInput').value;
+    });
+
+    [emailDiv, passwordDiv, signInButton].forEach(item => form.appendChild(item));
+    return form;
   }
 }

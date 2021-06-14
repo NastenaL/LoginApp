@@ -1,6 +1,7 @@
 import { DebounceHelper, InputValidator } from '../components';
 
 export class EmailComponent{
+
     public static create() : HTMLDivElement{
         const emailDiv = document.createElement('div');
         const emailInput = document.createElement('input');
@@ -8,12 +9,12 @@ export class EmailComponent{
         const debounce : DebounceHelper = new DebounceHelper();
         
         emailInput.addEventListener('input', () => {
-            debounce.delay()
-            .init()
-            .then(() => {
+          //  debounce.delay()
+          //  .init()
+          //  .then(() => {
                 const validator = new InputValidator();
-                console.log(validator.checkEmail(emailInput));
-            });
+                this.isCorrectField = validator.checkEmail(emailInput);
+          // });
         });
 
         emailInput.addEventListener('keypress', (event) => {

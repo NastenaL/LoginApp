@@ -1,6 +1,4 @@
-// TODO: Use barrel index.ts instead
-import { SignInComponent } from '../pages/signIn.page';
-import { Path } from '../enums/path.enum';
+import {SignInPage, Path} from '../services/index'
 
 export class RouterService {
   // TODO: Remove container and reverse dependency
@@ -28,19 +26,17 @@ export class RouterService {
     });
   }
 
-  private renderLocation(location: string) {
+  private renderLocation(location: string) : void {
     this.container.innerHTML = '';
-    // Remove this.container from SignInComponent and other component constructors
-    const signIn: SignInComponent = new SignInComponent();
+    const signIn: SignInPage = new SignInPage();
+
     switch (location) {
       case Path.SignUp:
         this.container.innerHTML = `<h1>${location}</h1>`;
         break;
-      case Path.SignIn:
-        signIn.render();
-        break;
       case Path.Home:
-        this.container.innerHTML = `<h1>${location}</h1>`;
+      case Path.SignIn:
+        this.container.append(signIn.render());
         break;
       case Path.Dashboard:
         this.container.innerHTML = `<h1>${location}</h1>`;

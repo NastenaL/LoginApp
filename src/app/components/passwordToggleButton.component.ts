@@ -1,11 +1,12 @@
 import { PasswordState } from '../components';
 
 export class PasswordToggleButton{
-    public create(passwordInput: HTMLInputElement): HTMLButtonElement {
+    public create(passwordInput: HTMLInputElement) : HTMLButtonElement {
         const showButton = document.createElement('button');
         showButton.textContent = 'Show';
 
-        showButton.addEventListener('click', () => {
+        showButton.addEventListener('click', (event) => {
+          event.preventDefault();
           const newState : PasswordState = this.togglePassword(passwordInput.type);
           showButton.textContent = newState.title;
           passwordInput.type = newState.type;
