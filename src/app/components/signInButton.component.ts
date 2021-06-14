@@ -5,7 +5,7 @@ export class SignInButtonComponent{
         signInButton.id = 'signInButton';
         signInButton.type = 'submit';
         signInButton.textContent = 'Sign in';
-        //signInButton.disabled = true;
+        signInButton.disabled = true;
 
         return signInButton;
       }

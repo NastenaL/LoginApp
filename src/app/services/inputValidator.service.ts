@@ -2,17 +2,21 @@ import { constants } from '../services';
 
 export class InputValidator {
 
-    public checkEmail(input: HTMLInputElement): boolean{
-        return constants.emailMask.test(input.value);
+    public checkEmail(email: string): boolean{
+        return constants.emailMask.test(email);
     } 
 
-    public checkPassword(password: string, badge :HTMLSpanElement){
-        let isCorrect = false;
+    public checkPassword(password: string, badge :HTMLSpanElement) : [string, boolean]{
+        let state : string = 'Weak';
+        let isCorrect : boolean = false; 
+
         if(constants.strongPassword.test(password)) {
+            state = 'Strong';
             isCorrect = true;
             badge.style.backgroundColor = "green";
             badge.textContent = 'Strong';
         } else if(constants.mediumPassword.test(password)) {
+            state = 'Medium';
             isCorrect = true;
             badge.style.backgroundColor = 'blue';
             badge.textContent = 'Medium';
@@ -21,6 +25,6 @@ export class InputValidator {
             badge.textContent = 'Weak';
         }
 
-        return isCorrect;
+        return [state,isCorrect];
     }
 }

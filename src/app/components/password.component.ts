@@ -16,11 +16,12 @@ export class PasswordComponent{
 
         // TODO: Move into badge component scope
         passwordInput.addEventListener('input', () => {
-            debounce.delay()
-            .init()
-            .then(() => {
-                console.log(validator.checkPassword(passwordInput.value, badge));
-            });
+            //debounce.delay()
+           // .init()
+            //.then(() => {
+             const checkedPassword: [string, boolean] = validator.checkPassword(passwordInput.value);
+             badge.value  = checkedPassword[0];
+           // });
         });
         const toggleButtonCreator : PasswordToggleButton = new PasswordToggleButton();
         const toggleButton = toggleButtonCreator.create(passwordInput);

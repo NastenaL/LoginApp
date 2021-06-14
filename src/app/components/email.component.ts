@@ -13,7 +13,7 @@ export class EmailComponent{
           //  .init()
           //  .then(() => {
                 const validator = new InputValidator();
-                this.isCorrectField = validator.checkEmail(emailInput);
+                this.isCorrectField = validator.checkEmail(emailInput.value);
           // });
         });
 
