@@ -11,7 +11,7 @@ function main() {
   const navigationLinks = document.getElementsByTagName('nav')[0]
     .getElementsByTagName('A') as HTMLCollectionOf<HTMLAnchorElement>;
 
-  const router = new RouterService(container);
+  const router = new RouterService();
   router.init(navigationLinks);
 
   const sideMenuHelper = new SideMenuHelper();

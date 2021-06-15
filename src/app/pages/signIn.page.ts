@@ -1,8 +1,11 @@
-import { DebounceHelper, EmailComponent, PasswordComponent, SignInButtonComponent, InputValidator, User} from '../pages'; 
+import { DebounceHelper, EmailComponent, PasswordComponent, SignInButtonComponent, InputValidator, User, RouterService, ProfilePage} from '../pages'; 
+import { Path } from '../services';
 
 export class SignInPage {
   private initialState: string = 'Weak';
-private users: Array<User> = new Array<User>();
+  private login : string = "";
+  private password : string = "";
+  private users: Array<User> = new Array<User>();
 
   public render(): DocumentFragment {
     const fragment = document.createDocumentFragment();
@@ -22,21 +25,42 @@ private users: Array<User> = new Array<User>();
 
     [emailDiv, passwordDiv].forEach(item =>{
       item.addEventListener('input',()=>{
-        const loginValue = document.getElementById('emailInput').value;
-        const passwordValue = document.getElementById('passwordInput').value;
+        this.login = document.getElementById('emailInput').value;
+        this.password = document.getElementById('passwordInput').value;
         const validator = new InputValidator();
 
-        let isEmailCorrect = validator.checkEmail(loginValue);
-        let isPasswordCorrect = validator.checkPassword(passwordValue, document.getElementById('passwordBadge'));
-        console.log(isEmailCorrect);
-        if(isEmailCorrect && isPasswordCorrect[1]){
-          signInButton.disabled = false;
-        }
+        let isEmailCorrect = validator.checkEmail(this.login);
+        let isPasswordCorrect = validator.checkPassword(this.password, document.getElementById('passwordBadge'));
+
+        signInButton.disabled = !(isEmailCorrect && isPasswordCorrect[1]);
       });
     });
 
-    signInButton.addEventListener('click', ()=>{
-      
+    signInButton.addEventListener('click', (event )=>{
+      event.preventDefault();
+
+      let r : User = {
+        id: '1',
+        login: 'jkdnvsdkv@jfkvn.ee',
+        password: 'Qwerrty123`',
+        fullName: 'Test'
+      }; 
+
+      this.users.push(r);
+
+      const user : User | undefined = this.users.find(item => {
+        item.login === this.login && item.password == this.password 
+        return item;
+      });
+
+      if(user === undefined){
+        alert("User does not exist");
+      }
+      else{
+        const router = new RouterService();
+        router.renderLocation(Path.Profile);
+        window.location.hash = '/' + user!.id + Path.Profile;
+      }
     });
 
     [emailDiv, passwordDiv, signInButton].forEach(item => form.appendChild(item));

@@ -4,3 +4,5 @@ export { EmailComponent } from '../components/email.component';
 export { PasswordComponent } from '../components/password.component';
 export { SignInButtonComponent } from '../components/signInButton.component';
 export { User } from '../interfaces/user.interface';
+export { RouterService } from '../services/router.service';
+export { ProfilePage } from '../pages/profile.page';

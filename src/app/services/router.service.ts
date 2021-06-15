@@ -1,13 +1,8 @@
-import {SignInPage, Path} from '../services/index'
+import {SignInPage, Path, ProfilePage} from '../services/index'
 
 export class RouterService {
-  // TODO: Remove container and reverse dependency
-  constructor(public container: Element) {
-    this.container = container;
-  }
 
-  // TODO: Add response type
-  public init(navigation: HTMLCollectionOf<HTMLAnchorElement>) {
+  public init(navigation: HTMLCollectionOf<HTMLAnchorElement>) : void{
     this.responseType();
 
     Array.from(navigation).forEach((item) => {
@@ -26,27 +21,33 @@ export class RouterService {
     });
   }
 
-  private renderLocation(location: string) : void {
-    this.container.innerHTML = '';
+  public renderLocation(location: string) : void {
+    const container = document.getElementById("container")!;
+    container.innerHTML = '';
+
     const signIn: SignInPage = new SignInPage();
+    const profile: ProfilePage = new ProfilePage();
 
     switch (location) {
       case Path.SignUp:
-        this.container.innerHTML = `<h1>${location}</h1>`;
+        container.innerHTML = `<h1>${location}</h1>`;
         break;
       case Path.Home:
       case Path.SignIn:
-        this.container.append(signIn.render());
+        container.append(signIn.render());
         break;
       case Path.Dashboard:
-        this.container.innerHTML = `<h1>${location}</h1>`;
+        container.innerHTML = `<h1>${location}</h1>`;
         break;
       case Path.ResetPassword:
-        this.container.innerHTML = `<h1>${location}</h1>`;
+        container.innerHTML = `<h1>${location}</h1>`;
+        break;
+      case Path.Profile:
+        container.append(profile.render());
         break;
       default: {
         // TODO: Redirect instead of rendering default template
-        this.container.append(signIn.render());
+        container.append(signIn.render());
         break;
       }
     }
