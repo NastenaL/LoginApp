@@ -1,4 +1,4 @@
-import { DebounceHelper, EmailComponent, PasswordComponent, SignInButtonComponent, InputValidator, User, RouterService, ProfilePage} from '../pages'; 
+import { DbService, DebounceHelper, EmailComponent, PasswordComponent, SignInButtonComponent, InputValidator, User, RouterService, ProfilePage} from '../pages'; 
 import { Path } from '../services';
 
 export class SignInPage {
@@ -6,6 +6,14 @@ export class SignInPage {
   private login : string = "";
   private password : string = "";
   private users: Array<User> = new Array<User>();
+
+  constructor(){
+    let db = new DbService();
+
+      db.renderUsers().then(result => {
+        this.users = Array<User>(result);
+      });
+  }
 
   public render(): DocumentFragment {
     const fragment = document.createDocumentFragment();
@@ -38,21 +46,12 @@ export class SignInPage {
 
     signInButton.addEventListener('click', (event )=>{
       event.preventDefault();
-
-      let r : User = {
-        id: '1',
-        login: 'jkdnvsdkv@jfkvn.ee',
-        password: 'Qwerrty123`',
-        fullName: 'Test'
-      }; 
-
-      this.users.push(r);
-
+      
       const user : User | undefined = this.users.find(item => {
         item.login === this.login && item.password == this.password 
         return item;
       });
-
+      
       if(user === undefined){
         alert("User does not exist");
       }

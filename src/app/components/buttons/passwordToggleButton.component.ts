@@ -1,4 +1,4 @@
-import { PasswordState } from '../components';
+import { PasswordState } from '../labels';
 
 export class PasswordToggleButton{
     public create(passwordInput: HTMLInputElement) : HTMLButtonElement {

@@ -1,0 +1,10 @@
+{
+    "users": [
+        {
+            "id": 1, "login":"qwerty@gmail.com", "password": "Qwerty`123", "fullName": "Qwerty asdf"
+        },
+        {
+            "id": 2, "login":"1qwerty@gmail.com", "password": "Qwerty`123", "fullName": "Qwerty Wasdf"
+        }
+    ]
+}

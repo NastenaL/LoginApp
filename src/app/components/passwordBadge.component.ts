@@ -1,4 +1,4 @@
-import {InputValidator} from '../components'
+import {InputValidator} from './labels'
 
 export class PasswordBadge{
     public static create(passwordState : string) : HTMLSpanElement{

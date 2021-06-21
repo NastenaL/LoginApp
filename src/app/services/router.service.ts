@@ -1,4 +1,4 @@
-import {SignInPage, Path, ProfilePage} from '../services/index'
+import {SignInPage, Path, ProfilePage, SignUpPage} from '../services/index'
 
 export class RouterService {
 
@@ -27,10 +27,11 @@ export class RouterService {
 
     const signIn: SignInPage = new SignInPage();
     const profile: ProfilePage = new ProfilePage();
+    const signUp: SignUpPage = new SignUpPage();
 
     switch (location) {
       case Path.SignUp:
-        container.innerHTML = `<h1>${location}</h1>`;
+        container.append(signUp.render());
         break;
       case Path.Home:
       case Path.SignIn:

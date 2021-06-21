@@ -1,4 +1,4 @@
-import { DebounceHelper, InputValidator } from '../components';
+import { DebounceHelper, InputValidator } from '../labels';
 
 export class EmailComponent{
 
@@ -9,12 +9,8 @@ export class EmailComponent{
         const debounce : DebounceHelper = new DebounceHelper();
         
         emailInput.addEventListener('input', () => {
-          //  debounce.delay()
-          //  .init()
-          //  .then(() => {
-                const validator = new InputValidator();
-                this.isCorrectField = validator.checkEmail(emailInput.value);
-          // });
+            const validator = new InputValidator();
+            this.isCorrectField = validator.checkEmail(emailInput.value);
         });
 
         emailInput.addEventListener('keypress', (event) => {

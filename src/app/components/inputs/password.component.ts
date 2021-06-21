@@ -1,4 +1,4 @@
-import { PasswordBadge, DebounceHelper, InputValidator, PasswordToggleButton } from '../components';
+import { PasswordBadge, DebounceHelper, InputValidator, PasswordToggleButton } from '../labels';
 
 export class PasswordComponent{
     public static create(initialState: string) : HTMLDivElement{
