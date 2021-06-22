@@ -1,5 +1,7 @@
-import { DbService, DebounceHelper, EmailComponent, PasswordComponent, SignInButtonComponent, InputValidator, User, RouterService, ProfilePage} from '../pages'; 
+import { DbService, EmailComponent, PasswordComponent, SignInButtonComponent, InputValidator, User, RouterService} from '../pages'; 
 import { Path } from '../services';
+import { UserActions } from '../store/actions/user.actions';
+
 
 export class SignInPage {
   private initialState: string = 'Weak';
@@ -7,12 +9,16 @@ export class SignInPage {
   private password : string = "";
   private users: Array<User> = new Array<User>();
 
-  constructor(){
+  #store = null;
+
+  constructor(store){
     let db = new DbService();
 
       db.renderUsers().then(result => {
         this.users = Array<User>(result);
       });
+
+      this.#store = store;
   }
 
   public render(): DocumentFragment {
@@ -59,6 +65,7 @@ export class SignInPage {
         const router = new RouterService();
         router.renderLocation(Path.Profile);
         window.location.hash = '/' + user!.id + Path.Profile;
+        this.#store.dispatch(UserActions.signIneUser);
       }
     });
 

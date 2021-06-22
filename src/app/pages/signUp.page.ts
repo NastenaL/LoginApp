@@ -1,7 +1,7 @@
-import { DbService, InputValidator, User, RouterService, ProfilePage, FirstNameComponent} from '../pages'; 
-import { Path } from '../services';
+import { DbService, FirstNameComponent, LastNameComponent, SignUpButtonComponent, EmailComponent, PasswordComponent, ConfirmPasswordComponent} from '../pages'; 
 
 export class SignUpPage {
+    private initialState: string = 'Weak';
 
     constructor(){
         let db = new DbService();
@@ -24,8 +24,13 @@ export class SignUpPage {
         form.id = 'signUpForm';
     
         const firstName = FirstNameComponent.create();
-    
-        [firstName].forEach(item => form.appendChild(item));
+        const lastName = LastNameComponent.create();
+        const email = EmailComponent.create();
+        const signUpButton = SignUpButtonComponent.create();
+        const password = PasswordComponent.create(this.initialState);
+        const confirmPassword = ConfirmPasswordComponent.create(this.initialState);
+
+        [firstName, lastName, email, password, confirmPassword, signUpButton].forEach(item => form.appendChild(item));
         return form;
       }
 }

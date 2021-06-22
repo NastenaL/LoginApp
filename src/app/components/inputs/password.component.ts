@@ -1,4 +1,4 @@
-import { PasswordBadge, DebounceHelper, InputValidator, PasswordToggleButton } from '../labels';
+import { PasswordBadge, InputValidator, PasswordToggleButton } from '../labels';
 
 export class PasswordComponent{
     public static create(initialState: string) : HTMLDivElement{
@@ -11,17 +11,12 @@ export class PasswordComponent{
         Object.assign(passwordInput, {id: 'passwordInput', type: 'password', minLength: 8, maxLength: 60});
 
         const badge = PasswordBadge.create(initialState);
-        const debounce = new DebounceHelper();
         const validator = new InputValidator(); 
 
         // TODO: Move into badge component scope
         passwordInput.addEventListener('input', () => {
-            //debounce.delay()
-           // .init()
-            //.then(() => {
              const checkedPassword: [string, boolean] = validator.checkPassword(passwordInput.value);
              badge.value  = checkedPassword[0];
-           // });
         });
         const toggleButtonCreator : PasswordToggleButton = new PasswordToggleButton();
         const toggleButton = toggleButtonCreator.create(passwordInput);

@@ -29,6 +29,7 @@ export class RouterService {
     const profile: ProfilePage = new ProfilePage();
     const signUp: SignUpPage = new SignUpPage();
 
+    console.log(location);
     switch (location) {
       case Path.SignUp:
         container.append(signUp.render());
