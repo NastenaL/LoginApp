@@ -6,9 +6,12 @@ export class RouterService {
     this.responseType();
 
     Array.from(navigation).forEach((item) => {
-      item.addEventListener('click', () => {
-        this.renderLocation(item.hash.slice(0, -1));
-      });
+      const location : string = item.hash.slice(0, -1); 
+      if(location !== ""){
+        item.addEventListener('click', () => {
+          this.renderLocation(location);
+        });
+      }
     });
   }
 

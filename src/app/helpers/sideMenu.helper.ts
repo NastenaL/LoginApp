@@ -24,7 +24,7 @@ private readonly menuPanel : HTMLElement;
     this.menuPanel.style.width = '250px';
   }
 
-  private closeNav(): void {
+  public closeNav(): void {
     this.menuPanel.style.width = '0';
   }
 }

@@ -7,18 +7,13 @@ export class SignInPage {
   private initialState: string = 'Weak';
   private login : string = "";
   private password : string = "";
-  private users: Array<User> = new Array<User>();
+  private users: User[] = [];
 
   #store = null;
 
   constructor(store){
-    let db = new DbService();
-
-      db.renderUsers().then(result => {
-        this.users = Array<User>(result);
-      });
-
-      this.#store = store;
+    this.getUserList();
+    this.#store = store;
   }
 
   public render(): DocumentFragment {
@@ -71,5 +66,14 @@ export class SignInPage {
 
     [emailDiv, passwordDiv, signInButton].forEach(item => form.appendChild(item));
     return form;
+  }
+
+  private getUserList(){
+    let db = new DbService();
+
+    db.getUsers().then(result => {
+      this.users = (result) as User[];
+      console.log(this.users);
+    });
   }
 }
