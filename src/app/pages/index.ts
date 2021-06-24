@@ -11,3 +11,6 @@ export { LastNameComponent } from '../components/inputs/lastName.components';
 export { RouterService } from '../services/router.service';
 export { ProfilePage } from '../pages/profile.page';
 export { DbService } from '../services/db.service';
+export { Path } from '../services';
+export { UserActions } from '../store/actions/user.actions';
+export {User} from '../type/user.type'

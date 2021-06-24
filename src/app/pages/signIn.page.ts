@@ -1,7 +1,4 @@
-import { DbService, EmailComponent, PasswordComponent, SignInButtonComponent, InputValidator, User, RouterService} from '../pages'; 
-import { Path } from '../services';
-import { UserActions } from '../store/actions/user.actions';
-
+import { DbService, EmailComponent, PasswordComponent, SignInButtonComponent, InputValidator, User, RouterService, Path, UserActions} from '../pages'; 
 
 export class SignInPage {
   private initialState: string = 'Weak';
@@ -69,11 +66,10 @@ export class SignInPage {
   }
 
   private getUserList(){
-    let db = new DbService();
+    const db = new DbService();
 
     db.getUsers().then(result => {
       this.users = (result) as User[];
-      console.log(this.users);
     });
   }
 }

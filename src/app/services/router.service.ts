@@ -2,7 +2,7 @@ import {SignInPage, Path, ProfilePage, SignUpPage} from '../services/index'
 
 export class RouterService {
 
-  public init(navigation: HTMLCollectionOf<HTMLAnchorElement>) : void{
+  public init(navigation: HTMLCollectionOf<HTMLAnchorElement>) : void {
     this.responseType();
 
     Array.from(navigation).forEach((item) => {
@@ -32,7 +32,6 @@ export class RouterService {
     const profile: ProfilePage = new ProfilePage();
     const signUp: SignUpPage = new SignUpPage();
 
-    console.log(location);
     switch (location) {
       case Path.SignUp:
         container.append(signUp.render());
@@ -51,8 +50,12 @@ export class RouterService {
         container.append(profile.render());
         break;
       default: {
-        // TODO: Redirect instead of rendering default template
-        container.append(signIn.render());
+
+        //window.location.assign(window.location.toString());
+        //parent.location.hash = Path.SignIn;
+        //window.location.hash = Path.SignIn;
+        //window.location.replace(window.location.toString());
+        this.renderLocation(Path.SignIn);
         break;
       }
     }
