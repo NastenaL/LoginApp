@@ -1,4 +1,3 @@
-export { DebounceHelper } from '../helpers/debounce.helper';
 export { InputValidator } from '../services/inputValidator.service';
 export { EmailComponentFactory } from '../components/inputs/email.component';
 export { PasswordComponentFactory } from '../components/inputs/password.component';

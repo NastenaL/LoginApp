@@ -1,9 +1,9 @@
-import { PasswordBadgeFactory, InputValidator, PasswordToggleButtonFactory } from '..';
+import { PasswordBadgeComponentFactory, InputValidator, PasswordToggleButtonFactory } from '..';
 
 export class PasswordComponentFactory{
     public static create(initialState: string) : HTMLDivElement{
         const passwordDiv : HTMLDivElement = document.createElement('div');
-        const badge : HTMLSpanElement = PasswordBadgeFactory.create(initialState);
+        const badge : HTMLSpanElement = PasswordBadgeComponentFactory.create(initialState);
         const passwordInput : HTMLInputElement = this.createInput(initialState, badge);
         const passwordLabel : HTMLLabelElement = this.createLabel();
         const toggleButton = PasswordToggleButtonFactory.create(passwordInput);

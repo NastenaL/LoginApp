@@ -1,5 +1,3 @@
-import { InputValidator } from '..';
-
 export class EmailComponentFactory{
 
     public static create() : HTMLDivElement{
