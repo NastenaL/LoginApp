@@ -14,7 +14,7 @@ export class PasswordToggleButtonFactory{
         return showButton;
     }
 
-    private togglePassword(buttonType:string) : PasswordState {
+    private static togglePassword(buttonType:string) : PasswordState {
         const newState : PasswordState = {type: "", title: ""};
         if (buttonType === 'password') {
           newState.title = 'Hide';

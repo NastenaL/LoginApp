@@ -1,16 +1,17 @@
-import { InputValidator } from '..';
-
 export class LastNameComponentFactory{
 
     public static create() : HTMLDivElement{
-        const lastNameDiv = document.createElement('div');
-        const lastNameInput = document.createElement('input');
+        const lastNameDiv : HTMLDivElement = document.createElement('div');
+        const lastNameInput : HTMLInputElement = this.createInput();
+        const lastNameLabel : HTMLLabelElement = this.createLabel();
+
+        [lastNameLabel, lastNameInput].forEach(item => lastNameDiv.appendChild(item));
+        return lastNameDiv;
+    }
+
+    private static createInput() : HTMLInputElement{
+        const lastNameInput : HTMLInputElement = document.createElement('input');
         Object.assign(lastNameInput, {id: 'lastNameInput', type: 'text', maxLength: 40, minLength:3});
-        
-        lastNameInput.addEventListener('input', () => {
-            const validator = new InputValidator();
-            //this.isCorrectField = validator.checkEmail(lastNameInput.value);
-        });
 
         lastNameInput.addEventListener('keypress', (event) => {
         if (event.key === 'Enter') {
@@ -20,11 +21,12 @@ export class LastNameComponentFactory{
             document.getElementById('ageInput')!.focus();
             }
         });
+        return lastNameInput;
+    }
 
-        const lastLabel = document.createElement('label');
-        Object.assign(lastLabel, {innerText: 'Last name', htmlFor: 'lastNameInput'});
-
-        [lastLabel, lastNameInput].forEach(item => lastNameDiv.appendChild(item));
-        return lastNameDiv;
+    private static createLabel() : HTMLLabelElement{
+        const lastNameLabel : HTMLLabelElement = document.createElement('label');
+        Object.assign(lastNameLabel, {innerText: 'Last name', htmlFor: 'lastNameInput'});
+        return lastNameLabel;
     }
 }
