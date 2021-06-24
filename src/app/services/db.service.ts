@@ -10,10 +10,14 @@ export class DbService{
 
     public async createUser(newUser: User){
         const uri = 'http://localhost:3004/users';
-        await fetch(uri, {
-            method: 'POST',
-            body: JSON.stringify(newUser)
-        });
+        
+        fetch(uri, {
+        method: 'POST',
+        body: JSON.stringify(newUser),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        }
+      })
     }
 
     public async getUserById(id: number) : Promise<User>{

@@ -5,11 +5,11 @@ export class FirstNameComponent{
     public static create() : HTMLDivElement{
         const firstNameDiv = document.createElement('div');
         const firstNameInput = document.createElement('input');
-        Object.assign(firstNameInput, {id: 'emailInput', type: 'email', maxLength: 20, minLength:3, autofocus: true});
+        Object.assign(firstNameInput, {id: 'firstNameInput', type: 'text', maxLength: 20, minLength:3, autofocus: true});
         
         firstNameInput.addEventListener('input', () => {
             const validator = new InputValidator();
-            this.isCorrectField = validator.checkEmail(firstNameInput.value);
+          //  this.isCorrectField = validator.checkEmail(firstNameInput.value);
         });
 
         firstNameInput.addEventListener('keypress', (event) => {

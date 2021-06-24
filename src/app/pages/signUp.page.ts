@@ -1,6 +1,4 @@
 import { DbService, FirstNameComponent, LastNameComponent, SignUpButtonComponent, EmailComponent, AgeComponent, PasswordComponent, ConfirmPasswordComponent} from '../pages'; 
-import { UserActions } from '../store/actions/user.actions';
-import {User} from '../type/user.type'
 
 export class SignUpPage {
   private initialState: string = 'Weak';
@@ -26,7 +24,16 @@ export class SignUpPage {
     const password = PasswordComponent.create(this.initialState);
     const confirmPassword = ConfirmPasswordComponent.create(this.initialState);
 
+
     signUpButton.addEventListener('click', () =>{
+      this.newUser = {
+        firstName: document.getElementById('firstNameInput')!.value,
+        lastName: document.getElementById('lastNameInput')!.value,
+        age: document.getElementById('ageInput')!.value,
+        login: document.getElementById('emailInput')!.value,
+        password: document.getElementById('passwordInput')!.value
+      };
+
       const db = new DbService();
       db.createUser(this.newUser);
     });

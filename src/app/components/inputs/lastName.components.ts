@@ -5,11 +5,11 @@ export class LastNameComponent{
     public static create() : HTMLDivElement{
         const lastNameDiv = document.createElement('div');
         const lastNameInput = document.createElement('input');
-        Object.assign(lastNameInput, {id: 'emailInput', type: 'email', maxLength: 40, minLength:3});
+        Object.assign(lastNameInput, {id: 'lastNameInput', type: 'text', maxLength: 40, minLength:3});
         
         lastNameInput.addEventListener('input', () => {
             const validator = new InputValidator();
-            this.isCorrectField = validator.checkEmail(lastNameInput.value);
+            //this.isCorrectField = validator.checkEmail(lastNameInput.value);
         });
 
         lastNameInput.addEventListener('keypress', (event) => {
@@ -17,7 +17,7 @@ export class LastNameComponent{
             event.preventDefault();
 
             lastNameInput.autofocus = false;
-            document.getElementById('lastNameInput')!.focus();
+            document.getElementById('ageInput')!.focus();
             }
         });
 
