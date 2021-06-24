@@ -1,7 +1,7 @@
-import { PasswordState } from '../labels';
+import { PasswordState } from '..';
 
-export class PasswordToggleButton{
-    public create(passwordInput: HTMLInputElement) : HTMLButtonElement {
+export class PasswordToggleButtonFactory{
+    public static create(passwordInput: HTMLInputElement) : HTMLButtonElement {
         const showButton = document.createElement('button');
         showButton.textContent = 'Show';
 

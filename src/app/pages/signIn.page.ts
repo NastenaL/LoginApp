@@ -1,4 +1,4 @@
-import { DbService, EmailComponent, PasswordComponent, SignInButtonComponent, InputValidator, User, RouterService, Path, UserActions} from '../pages'; 
+import { DbService, EmailComponentFactory, PasswordComponentFactory, SignInButtonComponentFactory, InputValidator, User, RouterService, Path, UserActions} from '../pages'; 
 
 export class SignInPage {
   private initialState: string = 'Weak';
@@ -25,9 +25,9 @@ export class SignInPage {
     const form = document.createElement('form');
     form.id = 'signInForm';
 
-    const emailDiv = EmailComponent.create();
-    const passwordDiv = PasswordComponent.create(this.initialState);
-    const signInButton = SignInButtonComponent.create();
+    const emailDiv = EmailComponentFactory.create();
+    const passwordDiv = PasswordComponentFactory.create(this.initialState);
+    const signInButton = SignInButtonComponentFactory.create();
 
     [emailDiv, passwordDiv].forEach(item =>{
       item.addEventListener('input',()=>{

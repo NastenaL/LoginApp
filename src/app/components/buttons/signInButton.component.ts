@@ -1,4 +1,4 @@
-export class SignInButtonComponent{
+export class SignInButtonComponentFactory{
 
     public static create(): HTMLButtonElement {
         const signInButton = document.createElement('button');

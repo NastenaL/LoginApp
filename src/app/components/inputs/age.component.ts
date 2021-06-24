@@ -1,6 +1,6 @@
-import { InputValidator } from '../labels';
+import { InputValidator } from '..';
 
-export class AgeComponent{
+export class AgeComponentFactory{
 
     public static create() : HTMLDivElement{
         const ageDiv = document.createElement('div');

@@ -1,6 +1,6 @@
-import {InputValidator} from './labels'
+import {InputValidator} from '.'
 
-export class PasswordBadge{
+export class PasswordBadgeFactory{
     public static create(passwordState : string) : HTMLSpanElement{
         const badge = document.createElement('span');
         badge.id = 'passwordBadge';

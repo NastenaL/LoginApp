@@ -1,6 +1,6 @@
-import { DebounceHelper, InputValidator } from '../labels';
+import { DebounceHelper, InputValidator } from '..';
 
-export class EmailComponent{
+export class EmailComponentFactory{
 
     public static create() : HTMLDivElement{
         const emailDiv = document.createElement('div');

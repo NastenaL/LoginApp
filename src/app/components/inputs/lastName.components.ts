@@ -1,6 +1,6 @@
-import { InputValidator } from '../labels';
+import { InputValidator } from '..';
 
-export class LastNameComponent{
+export class LastNameComponentFactory{
 
     public static create() : HTMLDivElement{
         const lastNameDiv = document.createElement('div');

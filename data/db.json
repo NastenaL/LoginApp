@@ -23,6 +23,22 @@
       "login": "jkdnvsdkv@jfkvn.ee",
       "password": "Asdfghjkl12343rt",
       "id": 8
+    },
+    {
+      "firstName": "Test123",
+      "lastName": "Qwerty",
+      "age": "55",
+      "login": "qwerty@gmail.com",
+      "password": "Qwertyyuui",
+      "id": 9
+    },
+    {
+      "firstName": "Test1236666",
+      "lastName": "User",
+      "age": "33",
+      "login": "qwerty@gmail.com",
+      "password": "22222222222222222222",
+      "id": 10
     }
   ]
 }

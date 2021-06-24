@@ -1,6 +1,6 @@
-import { PasswordBadge, InputValidator, PasswordToggleButton } from '../labels';
+import { PasswordBadgeFactory, InputValidator, PasswordToggleButtonFactory } from '..';
 
-export class PasswordComponent{
+export class PasswordComponentFactory{
     public static create(initialState: string) : HTMLDivElement{
         const passwordDiv = document.createElement('div');
 
@@ -10,7 +10,7 @@ export class PasswordComponent{
         const passwordInput = document.createElement('input');
         Object.assign(passwordInput, {id: 'passwordInput', type: 'password', minLength: 8, maxLength: 60});
 
-        const badge = PasswordBadge.create(initialState);
+        const badge = PasswordBadgeFactory.create(initialState);
         const validator = new InputValidator(); 
 
         // TODO: Move into badge component scope
@@ -18,8 +18,7 @@ export class PasswordComponent{
              const checkedPassword: [string, boolean] = validator.checkPassword(passwordInput.value);
              badge.value  = checkedPassword[0];
         });
-        const toggleButtonCreator : PasswordToggleButton = new PasswordToggleButton();
-        const toggleButton = toggleButtonCreator.create(passwordInput);
+        const toggleButton = PasswordToggleButtonFactory.create(passwordInput);
 
         [passwordLabel, passwordInput, badge, toggleButton].forEach(item => passwordDiv.appendChild(item));
         return passwordDiv;

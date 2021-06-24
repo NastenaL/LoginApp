@@ -1,6 +1,6 @@
-import { InputValidator } from '../labels';
+import { InputValidator } from '..';
 
-export class ConfirmPasswordComponent{
+export class ConfirmPasswordComponentFactory{
     public static create(initialState: string) : HTMLDivElement{
         const confirmPasswordDiv = document.createElement('div');
 
