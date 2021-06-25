@@ -1,8 +1,8 @@
 export class AgeComponentFactory{
 
     public static create() : HTMLDivElement{
-        const ageDiv : HTMLDivElement = document.createElement('div');
-        const ageInput : HTMLInputElement = this.createInput();
+        const ageDiv = document.createElement('div');
+        const ageInput = this.createInput();
         const ageLabel = this.createLabel();
 
         [ageLabel, ageInput].forEach(item => ageDiv.appendChild(item));
@@ -10,7 +10,7 @@ export class AgeComponentFactory{
     }
 
     private static createInput() : HTMLInputElement{
-        const ageInput : HTMLInputElement = document.createElement('input');
+        const ageInput = document.createElement('input');
         Object.assign(ageInput, {id: 'ageInput', type: 'text'});
         return ageInput;
     }

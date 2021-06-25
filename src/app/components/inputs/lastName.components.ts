@@ -1,16 +1,16 @@
 export class LastNameComponentFactory{
 
     public static create() : HTMLDivElement{
-        const lastNameDiv : HTMLDivElement = document.createElement('div');
-        const lastNameInput : HTMLInputElement = this.createInput();
-        const lastNameLabel : HTMLLabelElement = this.createLabel();
+        const lastNameDiv = document.createElement('div');
+        const lastNameInput = this.createInput();
+        const lastNameLabel = this.createLabel();
 
         [lastNameLabel, lastNameInput].forEach(item => lastNameDiv.appendChild(item));
         return lastNameDiv;
     }
 
     private static createInput() : HTMLInputElement{
-        const lastNameInput : HTMLInputElement = document.createElement('input');
+        const lastNameInput = document.createElement('input');
         Object.assign(lastNameInput, {id: 'lastNameInput', type: 'text', maxLength: 40, minLength:3});
 
         lastNameInput.addEventListener('keypress', (event) => {
@@ -25,7 +25,7 @@ export class LastNameComponentFactory{
     }
 
     private static createLabel() : HTMLLabelElement{
-        const lastNameLabel : HTMLLabelElement = document.createElement('label');
+        const lastNameLabel = document.createElement('label');
         Object.assign(lastNameLabel, {innerText: 'Last name', htmlFor: 'lastNameInput'});
         return lastNameLabel;
     }

@@ -7,9 +7,4 @@ export class PasswordBadgeComponentFactory{
         badge.textContent = passwordState;
         return badge;
     }
-
-    public static check(passwordText: string) : string{
-        const validator = new InputValidator();
-        return validator.checkPassword(passwordText);
-    }
 }
