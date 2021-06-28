@@ -1,22 +1,22 @@
-import { constants } from '../services';
+import { constants, PasswordValidation } from '../services';
 
 export class InputValidator {
 
-    public checkEmail(email: string): boolean{
+    public static checkEmail(email: string): boolean{
         return constants.emailMask.test(email);
     } 
 
-    public checkPassword(password: string, badge :HTMLSpanElement) : [string, boolean]{
-        let state : string = 'Weak';
+    public static checkPassword(password: string, badge :HTMLSpanElement) : PasswordValidation{
+        let strengthLevel : string = 'Weak';
         let isCorrect : boolean = false; 
 
         if(constants.strongPassword.test(password)) {
-            state = 'Strong';
+            strengthLevel = 'Strong';
             isCorrect = true;
             badge.style.backgroundColor = "green";
             badge.textContent = 'Strong';
         } else if(constants.mediumPassword.test(password)) {
-            state = 'Medium';
+            strengthLevel = 'Medium';
             isCorrect = true;
             badge.style.backgroundColor = 'blue';
             badge.textContent = 'Medium';
@@ -25,6 +25,12 @@ export class InputValidator {
             badge.textContent = 'Weak';
         }
 
-        return [state,isCorrect];
+        const result : PasswordValidation = {strengthLevel, isCorrect};
+        return result;
     }
+}
+
+export type ValidateResponse ={
+    strengthLevel : string, 
+    isCorrect : boolean
 }

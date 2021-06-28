@@ -33,10 +33,9 @@ export class SignInPage {
       item.addEventListener('input',()=>{
         this.login = document.getElementById('emailInput').value;
         this.password = document.getElementById('passwordInput').value;
-        const validator = new InputValidator();
 
-        let isEmailCorrect = validator.checkEmail(this.login);
-        let isPasswordCorrect = validator.checkPassword(this.password, document.getElementById('passwordBadge'));
+        let isEmailCorrect = InputValidator.checkEmail(this.login);
+        let isPasswordCorrect = InputValidator.checkPassword(this.password, document.getElementById('passwordBadge'));
 
         signInButton.disabled = !(isEmailCorrect && isPasswordCorrect[1]);
       });
@@ -45,11 +44,11 @@ export class SignInPage {
     signInButton.addEventListener('click', (event )=>{
       event.preventDefault();
       
-      const user : User | undefined = this.users.find(item => {
+      const user = this.users.find(item => {
         item.login === this.login && item.password == this.password 
         return item;
       });
-      
+    
       if(user === undefined){
         alert("User does not exist");
       }

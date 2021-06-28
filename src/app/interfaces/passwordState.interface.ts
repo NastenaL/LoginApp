@@ -1,4 +1,4 @@
 export interface PasswordState {
-    title: string;
-    type: string;
+    readonly title: string;
+    readonly type: string;
   }

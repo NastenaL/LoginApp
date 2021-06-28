@@ -1,10 +1,6 @@
+const menuPanel = document.getElementById("sideMenu")!;
 // TODO: Refactor tp SideMenuComponent
 export class SideMenuHelper {
-private readonly menuPanel : HTMLElement;
-
-  constructor() {
-    this.menuPanel = document.getElementById("sideMenu")!;
-  }
 
   public init(): void{
     const openButton = document.getElementById("openButton")!;
@@ -21,10 +17,10 @@ private readonly menuPanel : HTMLElement;
 
   private openNav(): void {
     // TODO: Move into css classes and use toggle classNames
-    this.menuPanel.style.width = '250px';
+    menuPanel.style.width = '250px';
   }
 
   public closeNav(): void {
-    this.menuPanel.style.width = '0';
+    menuPanel.style.width = '0';
   }
 }

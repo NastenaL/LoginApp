@@ -16,11 +16,9 @@ export class PasswordComponentFactory{
         const passwordInput = document.createElement('input');
         Object.assign(passwordInput, {id: 'passwordInput', type: 'password', minLength: 8, maxLength: 60});
 
-        const validator = new InputValidator(); 
-
         // TODO: Move into badge component scope
         passwordInput.addEventListener('input', () => {
-             const checkedPassword = validator.checkPassword(passwordInput.value);
+             const checkedPassword = InputValidator.checkPassword(passwordInput.value);
              badge.value  = checkedPassword[0];
         });
         return passwordInput;
