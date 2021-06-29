@@ -1,0 +1,79 @@
+import { DbService, EmailComponentFactory, PasswordComponentFactory, SignInButtonComponentFactory, InputValidator, User, RouterService, Path, UserActions} from '../pages'; 
+
+export class SignInPage {
+  // TODO: Move into redux store
+  // TODO: Use enum instead raw strings Weak, Strong; rename initialState to more descriptive name, like passwordState or passwordStrength 
+  private initialState: string = 'Weak';
+  private login : string = "";
+  private password : string = "";
+  private users: User[] = [];
+
+  #store = null;
+
+  constructor(store){
+    this.getUserList();
+    this.#store = store;
+  }
+
+  public render(): DocumentFragment {
+    const fragment = document.createDocumentFragment();
+    const form = this.createForm();
+    
+    fragment.appendChild(form);
+    return fragment;
+  }
+
+  private createForm(): HTMLFormElement{
+    const form = document.createElement('form');
+    form.id = 'signInForm';
+
+    const emailDiv = EmailComponentFactory.create();
+    const passwordDiv = PasswordComponentFactory.create(this.initialState);
+    const signInButton = SignInButtonComponentFactory.create();
+
+    [emailDiv, passwordDiv].forEach(item =>{
+      item.addEventListener('input',()=>{
+        // TODO: Fix nullable issue
+        this.login = document.getElementById('emailInput').value;
+        this.password = document.getElementById('passwordInput').value;
+
+        // TODO: Check if we can replace let to const 
+        let isEmailCorrect = InputValidator.checkEmail(this.login);
+        let isPasswordCorrect = InputValidator.checkPassword(this.password, document.getElementById('passwordBadge'));
+
+        signInButton.disabled = !(isEmailCorrect && isPasswordCorrect[1]);
+      });
+    });
+
+    signInButton.addEventListener('click', (event )=>{
+      event.preventDefault();
+      
+      const user = this.users.find(item => {
+        item.login === this.login && item.password == this.password 
+        return item;
+      });
+    
+      if(user === undefined){
+        alert("User does not exist");
+      }
+      else{
+        const router = new RouterService();
+        router.renderLocation(Path.Profile);
+        window.location.hash = '/' + user!.id + Path.Profile;
+        this.#store.dispatch(UserActions.signIneUser);
+      }
+    });
+
+    [emailDiv, passwordDiv, signInButton].forEach(item => form.appendChild(item));
+    return form;
+  }
+
+  private getUserList(){
+    const db = new DbService();
+
+    db.getUsers().then(result => {
+      // TODO: Remove type cast
+      this.users = (result) as User[];
+    });
+  }
+}

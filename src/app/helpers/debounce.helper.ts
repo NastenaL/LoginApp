@@ -1,23 +1,12 @@
-const DEBOUNCE_TIME : number = 1000;
+import {debounce} from 'lodash'
+// TODO: Move into constants
+const DEBOUNCE_TIME: number = 1000;
 
-export class DebounceHelper{
-
-    public static delay() {
-       let timeoutId : number | null = null;
-      
-        return {
-          init() {
-            return new Promise<void>((resolve) => {
-      
-              if (timeoutId !== null) {
-                clearTimeout(timeoutId);
-              }
-      
-              timeoutId = setTimeout(() => {
-                resolve();
-              }, DEBOUNCE_TIME);
-            });
-          },
-        };
-    }
+// TODO: Remove unused code
+function debounceHelper(fn : Function) : void {
+  debounce(function(){
+    fn();
+  }, DEBOUNCE_TIME); 
 }
+
+

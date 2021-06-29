@@ -1,6 +1,7 @@
 import { HelloActions } from '../store/actions/hello.actions';
 import { HelloSelectors } from '../store/selectors/hello.selectors';
 
+// TODO: Remove unused code
 export class HelloComponent {
   #store = null;
 

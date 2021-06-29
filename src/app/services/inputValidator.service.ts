@@ -1,22 +1,31 @@
-export class InputValidator {
-    private readonly emailMask = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    private readonly strongPassword = new RegExp('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})')
-    private readonly mediumPassword = new RegExp('((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{6,}))|((?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])(?=.{8,}))')
+import { constants, PasswordValidation, StrengthLevel, PasswordValidationColor } from '../services';
 
-    public checkEmail(input: HTMLInputElement): boolean{
-        return this.emailMask.test(input.value);
+export class InputValidator {
+
+    public static checkEmail(email: string): boolean{
+        return constants.emailMask.test(email);
     } 
 
-    public checkPassword(password: string, badge :HTMLSpanElement){
-        if(this.strongPassword.test(password)) {
-            badge.style.backgroundColor = "green";
-            badge.textContent = 'Strong';
-        } else if(this.mediumPassword.test(password)) {
-            badge.style.backgroundColor = 'blue';
-            badge.textContent = 'Medium';
+    public static checkPassword(password: string, badge :HTMLSpanElement) : PasswordValidation{
+        let strengthLevel : string = StrengthLevel.weak;
+        let isCorrect : boolean = false; 
+
+        if(constants.strongPassword.test(password)) {
+            strengthLevel = StrengthLevel.strong;
+            isCorrect = true;
+            badge.style.backgroundColor = PasswordValidationColor.green;
+            badge.textContent = StrengthLevel.strong;
+        } else if(constants.mediumPassword.test(password)) {
+            strengthLevel = StrengthLevel.medium;
+            isCorrect = true;
+            badge.style.backgroundColor = PasswordValidationColor.blue;
+            badge.textContent = StrengthLevel.medium;
         } else {
-            badge.style.backgroundColor = 'red';
-            badge.textContent = 'Weak';
+            badge.style.backgroundColor = PasswordValidationColor.red;
+            badge.textContent = StrengthLevel.weak;
         }
+
+        const result : PasswordValidation = {strengthLevel, isCorrect};
+        return result;
     }
 }
