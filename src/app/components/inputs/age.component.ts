@@ -10,6 +10,7 @@ export class AgeComponentFactory{
     }
 
     private static createInput() : HTMLInputElement{
+        // TODO: Check and move input creation into separate function, where we can reuse it at other componentFactories. Same for label element
         const ageInput = document.createElement('input');
         Object.assign(ageInput, {id: 'ageInput', type: 'text'});
         return ageInput;

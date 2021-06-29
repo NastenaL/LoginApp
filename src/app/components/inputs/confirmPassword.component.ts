@@ -1,5 +1,6 @@
 export class ConfirmPasswordComponentFactory{
 
+    // TODO: Remove unused property
     public static create(initialState: string) : HTMLDivElement{
         const confirmPasswordDiv = document.createElement('div');
         const confirmPasswordInput = this.createInput();

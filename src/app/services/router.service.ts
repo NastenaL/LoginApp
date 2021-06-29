@@ -28,6 +28,7 @@ export class RouterService {
     const container = document.getElementById("container")!;
     container.innerHTML = '';
 
+    // TODO: Fix parameter issue
     const signIn: SignInPage = new SignInPage();
     const profile: ProfilePage = new ProfilePage();
     const signUp: SignUpPage = new SignUpPage();
@@ -51,6 +52,7 @@ export class RouterService {
         break;
       default: {
 
+        // TODO: Make redirection to #/sign-in
         //window.location.assign(window.location.toString());
         //parent.location.hash = Path.SignIn;
         //window.location.hash = Path.SignIn;

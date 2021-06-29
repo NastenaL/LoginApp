@@ -18,6 +18,8 @@ export class EmailComponentFactory{
             event.preventDefault();
 
             emailInput.autofocus = false;
+            // TODO: Id should be constant value 
+            // TODO: ideally, we need a general approach for focusing on specific elements without disclosing class internals
             document.getElementById('passwordInput')!.focus();
             }
         });

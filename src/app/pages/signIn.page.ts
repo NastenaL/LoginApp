@@ -1,6 +1,8 @@
 import { DbService, EmailComponentFactory, PasswordComponentFactory, SignInButtonComponentFactory, InputValidator, User, RouterService, Path, UserActions} from '../pages'; 
 
 export class SignInPage {
+  // TODO: Move into redux store
+  // TODO: Use enum instead raw strings Weak, Strong; rename initialState to more descriptive name, like passwordState or passwordStrength 
   private initialState: string = 'Weak';
   private login : string = "";
   private password : string = "";
@@ -31,9 +33,11 @@ export class SignInPage {
 
     [emailDiv, passwordDiv].forEach(item =>{
       item.addEventListener('input',()=>{
+        // TODO: Fix nullable issue
         this.login = document.getElementById('emailInput').value;
         this.password = document.getElementById('passwordInput').value;
 
+        // TODO: Check if we can replace let to const 
         let isEmailCorrect = InputValidator.checkEmail(this.login);
         let isPasswordCorrect = InputValidator.checkPassword(this.password, document.getElementById('passwordBadge'));
 
@@ -68,6 +72,7 @@ export class SignInPage {
     const db = new DbService();
 
     db.getUsers().then(result => {
+      // TODO: Remove type cast
       this.users = (result) as User[];
     });
   }

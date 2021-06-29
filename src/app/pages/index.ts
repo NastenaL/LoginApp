@@ -1,3 +1,4 @@
+// TODO: Fix and use - export * from "../../path"
 export { InputValidator } from '../services/inputValidator.service';
 export { EmailComponentFactory } from '../components/inputs/email.component';
 export { PasswordComponentFactory } from '../components/inputs/password.component';
